@@ -1,5 +1,8 @@
 -*- change-log -*-
 
+1.07 2008-06-16 rurban
+	* debug.t: fix strawberry perl quoting issue
+
 1.06 2008-06-15 rurban
 	* added B::Flags output
 	* dual-life CPAN as B-Debug-1.06 and CORE. Removed from B-C-1.04_20
