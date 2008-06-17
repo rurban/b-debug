@@ -1,10 +1,11 @@
 package B::Debug;
 
-our $VERSION = '1.07';
+our $VERSION = '1.08';
 
 use strict;
 use B qw(peekop class walkoptree walkoptree_exec
          main_start main_root cstring sv_undef);
+use Config;
 our (@optype, @specialsv_name);
 require B;
 if ($] < 5.009) {
@@ -15,15 +16,6 @@ if ($] < 5.009) {
 }
 my $have_B_Flags;
 eval { require B::Flags and $have_B_Flags++ };
-BEGIN {
-    use Config;
-    my $ithreads = $Config{'useithreads'} eq 'define';
-    eval qq{
-	sub ITHREADS() { $ithreads }
-	sub VERSION() { $] }
-    }; die $@ if $@;
-}
-
 my %done_gv;
 
 sub _printop {
@@ -43,7 +35,7 @@ sub B::OP::debug {
 	op_targ		%d
 	op_type		%d
 EOT
-    if (VERSION > 5.009) {
+    if ($] > 5.009) {
 	printf <<'EOT', $op->opt;
 	op_opt		%d
 EOT
@@ -102,10 +94,10 @@ sub B::LISTOP::debug {
 sub B::PMOP::debug {
     my ($op) = @_;
     $op->B::LISTOP::debug();
-    printf "\top_pmreplroot\t0x%x\n", VERSION < 5.008 ? ${$op->pmreplroot} : $op->pmreplroot;
+    printf "\top_pmreplroot\t0x%x\n", $] < 5.008 ? ${$op->pmreplroot} : $op->pmreplroot;
     printf "\top_pmreplstart\t0x%x\n", ${$op->pmreplstart};
-    printf "\top_pmnext\t0x%x\n", ${$op->pmnext} if VERSION < 5.009005;
-    if (ITHREADS) {
+    printf "\top_pmnext\t0x%x\n", ${$op->pmnext} if $] < 5.009005;
+    if ($Config{'useithreads'}) {
       printf "\top_pmstashpv\t%s\n", cstring($op->pmstashpv);
       printf "\top_pmoffset\t%d\n", $op->pmoffset;
     } else {
@@ -113,10 +105,10 @@ sub B::PMOP::debug {
     }
     printf "\top_precomp\t%s\n", cstring($op->precomp);
     printf "\top_pmflags\t0x%x\n", $op->pmflags;
-    printf "\top_reflags\t0x%x\n", $op->reflags if VERSION >= 5.009;
-    printf "\top_pmpermflags\t0x%x\n", $op->pmpermflags if VERSION < 5.009;
-    printf "\top_pmdynflags\t0x%x\n", $op->pmdynflags if VERSION < 5.009;
-    $op->pmreplroot->debug if VERSION < 5.008;
+    printf "\top_reflags\t0x%x\n", $op->reflags if $] >= 5.009;
+    printf "\top_pmpermflags\t0x%x\n", $op->pmpermflags if $] < 5.009;
+    printf "\top_pmdynflags\t0x%x\n", $op->pmdynflags if $] < 5.009;
+    $op->pmreplroot->debug if $] < 5.008;
 }
 
 sub B::COP::debug {
@@ -268,7 +260,7 @@ sub B::AV::debug {
     my (@array) = eval { $av->ARRAY; };
     print "\tARRAY\t\t(", join(", ", map("0x" . $$_, @array)), ")\n";
     my $fill = eval { scalar(@array) };
-    if (ITHREADS) {
+    if ($Config{'useithreads'}) {
       printf <<'EOT', $fill, $av->MAX, $av->OFF;
 	FILL		%d
 	MAX		%d
@@ -280,7 +272,7 @@ EOT
 	MAX		%d
 EOT
     }
-    printf <<'EOT', $av->AvFLAGS if VERSION < 5.009;
+    printf <<'EOT', $av->AvFLAGS if $] < 5.009;
 	AvFLAGS		%d
 EOT
 }

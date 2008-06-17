@@ -59,12 +59,13 @@ threadsv readline gv lineseq nextstate aassign null pushmark split pushre
 threadsv const null pushmark rvav gv nextstate subst const unstack
 EOF
 } else {
-    $b=<<EOF;
-leave enter nextstate label leaveloop enterloop null and defined null
-null gvsv readline gv lineseq nextstate aassign null pushmark split pushre
-null gvsv const null pushmark rvav gv nextstate subst const unstack
+  $b=<<EOF;
+leave enter nextstate label leaveloop enterloop null and defined null null
+gvsv readline gv lineseq nextstate aassign null pushmark split pushre null
+gvsv const null pushmark rvav gv nextstate subst const unstack
 EOF
 }
+$b .= " nextstate" if $] < 5.007;
 $b=~s/\n/ /g;$b=~s/\s+/ /g;
 $b =~ s/\s+$//;
 is($a, $b);

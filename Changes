@@ -1,5 +1,8 @@
 -*- change-log -*-
 
+1.08 2008-06-17 rurban
+	* support 5.00558 - 5.6.2
+
 1.07 2008-06-16 rurban
 	* debug.t: fix strawberry perl quoting issue
 
