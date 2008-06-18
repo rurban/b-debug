@@ -51,6 +51,7 @@ $a =~ s/\s+/ /g;
 $a =~ s/\b(s|foo|bar|ullsv)\b\s?//g;
 $a =~ s/^\s+//;
 $a =~ s/\s+$//;
+$a =~ s/\s+nextstate$//; # if $] < 5.008001; # 5.8.0 adds it. 5.8.8 not anymore
 my $is_thread = $Config{use5005threads} && $Config{use5005threads} eq 'define';
 if ($is_thread) {
     $b=<<EOF;
@@ -65,7 +66,7 @@ gvsv readline gv lineseq nextstate aassign null pushmark split pushre null
 gvsv const null pushmark rvav gv nextstate subst const unstack
 EOF
 }
-$b .= " nextstate" if $] < 5.007;
+#$b .= " nextstate" if $] < 5.008001; # ??
 $b=~s/\n/ /g;$b=~s/\s+/ /g;
 $b =~ s/\s+$//;
 is($a, $b);

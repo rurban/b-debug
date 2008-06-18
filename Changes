@@ -1,5 +1,10 @@
 -*- change-log -*-
 
+1.09 2008-06-18 rurban
+	* minor META.yml syntax fix
+	* 5.8.0 ending nextstate test failure: be more tolerant
+	* PREREQ_PM Test::More
+
 1.08 2008-06-17 rurban
 	* support 5.00558 - 5.6.2
 
