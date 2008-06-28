@@ -1,12 +1,13 @@
 package B::Debug;
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 use strict;
+require 5.006;
 use B qw(peekop class walkoptree walkoptree_exec
          main_start main_root cstring sv_undef);
 use Config;
-our (@optype, @specialsv_name);
+my (@optype, @specialsv_name);
 require B;
 if ($] < 5.009) {
   require B::Asmdata;

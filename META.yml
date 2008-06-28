@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                B-Debug
-version:             1.09
+version:             1.10
 abstract:            print debug info about ops
 license:             perl
 author:              
     - Malcolm Beattie <mbeattie@sable.ox.ac.uk>, Reini Urban <rurban@cpan.org>
-generated_by:        ExtUtils::MakeMaker version 6.42
+generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
     B:                             0
