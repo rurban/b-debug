@@ -1,6 +1,6 @@
 package B::Debug;
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 
 use strict;
 require 5.006;
@@ -16,7 +16,9 @@ if ($] < 5.009) {
   B->import qw(@optype @specialsv_name);
 }
 my $have_B_Flags;
-eval { require B::Flags and $have_B_Flags++ };
+if (!$ENV{PERL_CORE}){ # avoid CORE test crashes
+  eval { require B::Flags and $have_B_Flags++ };
+}
 my %done_gv;
 
 sub _printop {
@@ -346,7 +348,25 @@ otherwise in basic order.
 
 =head1 Changes
 
-  1.06  2008-06-11 rurban
+  1.11 2008-07-14 rurban
+	avoid B::Flags in CORE tests not to crash on old XS in @INC
+
+  1.10 2008-06-28 rurban
+	require 5.006; Test::More not possible in 5.00505
+	our => my
+	
+  1.09 2008-06-18 rurban
+	minor META.yml syntax fix
+	5.8.0 ending nextstate test failure: be more tolerant
+	PREREQ_PM Test::More
+
+  1.08 2008-06-17 rurban
+	support 5.00558 - 5.6.2
+
+  1.07 2008-06-16 rurban
+	debug.t: fix strawberry perl quoting issue
+
+  1.06 2008-06-11 rurban
 	added B::Flags output
 	dual-life CPAN as B-Debug-1.06 and CORE
 	protect scalar(@array) if tied arrays leave out FETCHSIZE
