@@ -6,6 +6,5 @@ MANIFEST
 Makefile.PL
 META.yml
 README
-t/coverage.html
 t/debug.t
 t/pod.t
