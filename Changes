@@ -1,5 +1,9 @@
 -*- change-log -*-
 
+1.14 2010-09-11 rurban
+	* Remove qw(...) as parentheses deprecated warnings. 
+	  (PERL#77758 by Paul Johnson)
+	
 1.13 2010-09-09 rurban
 	* print name of op_type
 	* print ppaddr consistent with other op addr

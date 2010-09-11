@@ -1,6 +1,6 @@
 package B::Debug;
 
-our $VERSION = '1.13';
+our $VERSION = '1.14';
 
 use strict;
 require 5.006;
@@ -11,9 +11,9 @@ my (@optype, @specialsv_name);
 require B;
 if ($] < 5.009) {
   require B::Asmdata;
-  B::Asmdata->import qw(@optype @specialsv_name);
+  B::Asmdata->import (qw(@optype @specialsv_name));
 } else {
-  B->import qw(@optype @specialsv_name);
+  B->import (qw(@optype @specialsv_name));
 }
 my $have_B_Flags;
 if (!$ENV{PERL_CORE}){ # avoid CORE test crashes
