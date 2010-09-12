@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               B-Debug
-version:            1.14
+version:            1.15
 abstract:           print debug info about ops
 author:
     - Malcolm Beattie <mbeattie@sable.ox.ac.uk>, Reini Urban <rurban@cpan.org>
