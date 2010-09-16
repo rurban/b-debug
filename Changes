@@ -1,5 +1,8 @@
 -*- change-log -*-
 
+1.16 2010-09-16 rurban
+	* fix test 9 on Win32, shell quoting
+
 1.15 2010-09-12 rurban
 	* fix sv->GvFLAGS => gv->GvFLAGS
 	* fixes for 5.8.0 (COP->io) and 5.6.1 (GV->SAFENAME)

@@ -1,6 +1,6 @@
 package B::Debug;
 
-our $VERSION = '1.15';
+our $VERSION = '1.16';
 
 use strict;
 require 5.006;
@@ -373,7 +373,8 @@ B::Debug - Walk Perl syntax tree, printing debug info about ops
 
 =head1 SYNOPSIS
 
-	perl -MO=Debug[,OPTIONS] foo.pl
+        perl -MO=Debug foo.pl
+        perl -MO=Debug,-exec foo.pl
 
 =head1 DESCRIPTION
 

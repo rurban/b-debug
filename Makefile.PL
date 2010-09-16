@@ -6,7 +6,7 @@ WriteMakefile
    NAME	           => "B::Debug",
    VERSION_FROM    => "Debug.pm",
    PREREQ_PM => {'B'         => 0,
-		'Test::More' => 0},
+                 'Test::More' => 0},
    ($] >= 5.005 ?
     ('AUTHOR' => 'Malcolm Beattie <mbeattie@sable.ox.ac.uk>, Reini Urban <rurban@cpan.org>',
      'ABSTRACT' => 'print debug info about ops') : ()),
@@ -14,11 +14,11 @@ WriteMakefile
     ('LICENSE'                => 'perl', ) : ()),
    (($ExtUtils::MakeMaker::VERSION gt '6.31' and $ExtUtils::MakeMaker::VERSION lt '6.46') ?
     ('EXTRA_META'  => "recommends:\n" .
-     "    B::Flags:                      0.02\n"
+     "    B::Flags:                      0.04\n"
     ) : ()),
    ($ExtUtils::MakeMaker::VERSION gt '6.46' ?
     ('META_MERGE'  => {"recommends" => {
-                       "B::Flags" => "0.02"}}
+                       "B::Flags" => "0.04"}}
     ) : ()),
    # Part of core perl since 5.005005 (?)
    'INSTALLDIRS' => ( $] > 5.005005 ? "perl" : "site" ),
