@@ -24,7 +24,7 @@ $|  = 1;
 use warnings;
 use strict;
 use Config;
-use Test::More tests => 11;
+use Test::More tests => 14;
 use B;
 use B::Debug;
 use File::Spec;
@@ -38,7 +38,7 @@ my $redir = $^O =~ /VMS|MSWin32|MacOS/ ? "" : "2>&1";
 $a = `$X $path "-MO=Debug" -e 1 $redir`;
 like($a, qr/\bLISTOP\b.*\bOP\b.*\bCOP\b.*\bOP\b/s);
 
-
+# XXX TODO These two Terse tests should be moved to ext/B/t/terse.t
 $a = `$X $path "-MO=Terse" -e 1 $redir`;
 like($a, qr/\bLISTOP\b.*leave.*\n    OP\b.*enter.*\n    COP\b.*nextstate.*\n    OP\b.*null/s);
 
@@ -68,7 +68,7 @@ EOF
 }
 #$b .= " nextstate" if $] < 5.008001; # ??
 $b=~s/\n/ /g; $b=~s/\s+/ /g;
-$b =~ s/\s+$//;
+$b=~s/\s+$//;
 is($a, $b);
 
 like(B::Debug::_printop(B::main_root),  qr/LISTOP\s+\[OP_LEAVE\]/);
@@ -76,8 +76,20 @@ like(B::Debug::_printop(B::main_start), qr/OP\s+\[OP_ENTER\]/);
 
 $a = `$X $path "-MO=Debug" -e "B::main_root->debug" $redir`;
 like($a, qr/op_next\s+0x0/m);
+$a =~ s/op_flags.*//; # only the first op
+like($a, qr/OP \[OP_LEAVE\]/);
 $a = `$X $path "-MO=Debug" -e "B::main_start->debug" $redir`;
 like($a, qr/\[OP_ENTER\]/m);
+
+# Options
+$a = `$X $path "-MO=Debug,-exec" -e "B::main_root->debug" $redir`;
+$a =~ s/op_flags.*//; # only the first op
+like($a, qr/OP \[OP_ENTER\]/);
+
+# backwards compat
+$a = `$X $path "-MO=Debug,exec" -e "B::main_root->debug" $redir`;
+$a =~ s/op_flags.*//;
+like($a, qr/OP \[OP_ENTER\]/);
 
 # pass missing FETCHSIZE, fixed with 1.06
 my $e = q(BEGIN{tie @a, __PACKAGE__;sub TIEARRAY {bless{}} sub FETCH{1}};print $a[1]);
