@@ -26,5 +26,5 @@ WriteMakefile
    ($] < 5.011) ? (PM => {
        'Debug.pm' => '$(INST_ARCHLIB)/B/Debug.pm',
    }) : (),
-
+   SIGN => 1,
   );
