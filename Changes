@@ -1,17 +1,20 @@
 -*- change-log -*-
 
+1.17 2011-11-25 rurban
+	* FSF address change
+
 1.16 2010-09-16 rurban
 	* fix test 9 on Win32, shell quoting
 
 1.15 2010-09-12 rurban
 	* fix sv->GvFLAGS => gv->GvFLAGS
 	* fixes for 5.8.0 (COP->io) and 5.6.1 (GV->SAFENAME)
-	* fix $have_B_Flags_extra warning 
+	* fix $have_B_Flags_extra warning
 
 1.14 2010-09-11 rurban
-	* Remove qw(...) as parentheses deprecated warnings. 
+	* Remove qw(...) as parentheses deprecated warnings.
 	  (PERL#77758 by Paul Johnson)
-	
+
 1.13 2010-09-09 rurban
 	* print name of op_type
 	* print ppaddr consistent with other op addr
@@ -23,7 +26,7 @@
 	* fix t/debug.t test 7
 
 1.12 2010-02-10 rurban
-	* remove archlib installation cruft, and use the proper PM rule. 
+	* remove archlib installation cruft, and use the proper PM rule.
 	By Todd Rinaldo (toddr)
 
 1.11 2008-07-14 rurban
@@ -32,7 +35,7 @@
 1.10 2008-06-28 rurban
 	* require 5.006; Test::More not possible in 5.00505
 	* our => my
-	
+
 1.09 2008-06-18 rurban
 	* minor META.yml syntax fix
 	* 5.8.0 ending nextstate test failure: be more tolerant
@@ -48,7 +51,7 @@
 	* added B::Flags output
 	* dual-life CPAN as B-Debug-1.06 and CORE. Removed from B-C-1.04_20
 	* protect scalar(@array) if tied arrays leave out FETCHSIZE
-	* special Makefile INST_ARCHLIB hack to install into ARCHLIB for 
+	* special Makefile INST_ARCHLIB hack to install into ARCHLIB for
 	the default perl @INC searchorder
 
 1.05_03 2008-04-16 rurban
@@ -71,14 +74,14 @@ Maybe Relevant Changes from CORE
 
 For the exact Changes see
   http://public.activestate.com/cgi-bin/perlbrowse/b/ext/B/B/Debug.pm
-  http://public.activestate.com/cgi-bin/perlbrowse/b/ext/B/t/debug.t	
-	
+  http://public.activestate.com/cgi-bin/perlbrowse/b/ext/B/t/debug.t
+
 Gurusamy Sarathy <gsar@cpan.org>  2000-12-17 22:49:13
     Subject: [ID 20000928.002] perlcc & ByteCode.pm option mismatch
     Did not apply cleanly, manual intervention was needed.
 
     Subject: [ID 20001003.006] B::Debug not -w clean
-    
+
     Test harness update to sync with the new perlcc,
     from Simon Cozens.
 
