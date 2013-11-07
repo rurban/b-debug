@@ -20,8 +20,8 @@ WriteMakefile
     ('META_MERGE'  => {"recommends" => {
                        "B::Flags" => "0.04"}}
     ) : ()),
-   # Part of core perl since 5.005005 (?)
-   'INSTALLDIRS' => ( $] > 5.005005 ? "perl" : "site" ),
+   # Part of core perl since 5.005005, but core wants it to be in site since 5.12
+   'INSTALLDIRS' => ( $] > 5.005005 && $] < 5.011 ? "perl" : "site" ),
    # install into ARCHLIB
    ($] < 5.011) ? (PM => {
        'Debug.pm' => '$(INST_ARCHLIB)/B/Debug.pm',
