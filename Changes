@@ -1,5 +1,8 @@
 -*- change-log -*-
 
+1.20 2014-08-03 rurban
+	* avoid exists on an array element (aaron crane)
+
 1.19 2013-11-07 rurban
 	* install into site (again) since 5.12
         * support lexical subs, NAME instead of GV.
