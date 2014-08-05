@@ -1,5 +1,8 @@
 -*- change-log -*-
 
+1.21 2014-08-05 rurban
+	* add missing META.json to MANIFEST (RT#97722 by KENTNL)
+
 1.20 2014-08-03 rurban
 	* avoid exists on an array element (aaron crane)
 

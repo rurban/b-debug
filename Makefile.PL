@@ -5,7 +5,7 @@ WriteMakefile
   (
    NAME	           => "B::Debug",
    VERSION_FROM    => "Debug.pm",
-   PREREQ_PM => {'B'         => 0,
+   PREREQ_PM => {'B'          => 0,
                  'Test::More' => 0},
    ($] >= 5.005 ?
     ('AUTHOR' => 'Malcolm Beattie <mbeattie@sable.ox.ac.uk>, Reini Urban <rurban@cpan.org>',
