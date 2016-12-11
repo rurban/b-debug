@@ -1,5 +1,8 @@
 -*- change-log -*-
 
+1.24 2016-12-11 rurban
+	* add 5.25.6 support: split optimization
+
 1.23 2015-01-25 rurban
         * again being hit by EUMM not being able to do parallel cpansign
 
